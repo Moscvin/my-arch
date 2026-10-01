@@ -1,0 +1,42 @@
+general {
+        colors = true
+        interval = 5
+        color_good = "#a6e3a1"
+        color_degraded = "#f9e2af"
+        color_bad = "#f38ba8"
+}
+
+order += "ethernet _first_"
+order += "disk /"
+order += "cpu_usage"
+order += "memory"
+order += "volume master"
+order += "tztime local"
+
+ethernet _first_ {
+        format_up = "LAN %ip"
+        format_down = "LAN down"
+}
+
+disk "/" {
+        format = "SSD %avail"
+}
+
+cpu_usage {
+        format = "CPU %usage"
+}
+
+memory {
+        format = "RAM %used"
+        threshold_degraded = "2G"
+}
+
+volume master {
+        format = "VOL %volume"
+        format_muted = "VOL mut"
+        device = "pulse"
+}
+
+tztime local {
+        format = "%d.%m.%Y  %H:%M"
+}
